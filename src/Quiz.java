@@ -1,6 +1,6 @@
 public interface Quiz {
     public void showQuestion();
-    public void isCorrectAnswer();
+    public boolean isCorrectAnswer(String answer);
 
 
 }
