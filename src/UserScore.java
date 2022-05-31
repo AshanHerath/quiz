@@ -1,6 +1,6 @@
 public class UserScore {
     private String userName;
-    private int userScore;
+    private int userScore = 0;
 
     public String getUserName() {
         return userName;
@@ -16,5 +16,9 @@ public class UserScore {
 
     public void setUserScore(int userScore) {
         this.userScore = userScore;
+    }
+
+    public void addMark(int mark) {
+        this.userScore += mark;
     }
 }
