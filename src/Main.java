@@ -29,7 +29,9 @@ public class Main {
                 while (rs.next()) {
                     quiz.add(new MultichoiceQuiz(rs.getString("question"), rs.getString("answerA"), rs.getString("answerB"), rs.getString("answerC"), rs.getString("answerD"), rs.getString("correctAnswer")));
                 }
+                int facedQuizCount = 0;
                 for (int i = 0; i < quiz.size(); i++) {
+                    ++facedQuizCount;
                     MultichoiceQuiz mq = (MultichoiceQuiz) quiz.get(i);
                     System.out.println(mq.getQuestion());
                     System.out.println("(A) " + mq.getAnswerA());
@@ -41,7 +43,7 @@ public class Main {
                         if (mq.isCorrectAnswer("A")) {
                             us.addMark(1);
                             System.out.println("Correct Answer");
-                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore());
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount);
                             System.out.println("(A) Next Question");
                             System.out.println("(B) Exit Current Round");
                             answer = sc.nextLine();
@@ -52,7 +54,7 @@ public class Main {
                             }
                         } else {
                             System.out.println("Incorrect Answer");
-                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore());
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount);
                             System.out.println("Exit Current Round");
                             break;
                         }
@@ -61,7 +63,7 @@ public class Main {
                         if (mq.isCorrectAnswer("B")) {
                             us.addMark(1);
                             System.out.println("Correct Answer");
-                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore());
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount);
                             System.out.println("(A) Next Question");
                             System.out.println("(B) Exit Current Round");
                             answer = sc.nextLine();
@@ -72,7 +74,7 @@ public class Main {
                             }
                         } else {
                             System.out.println("Incorrect Answer");
-                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore());
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount);
                             System.out.println("Exit Current Round");
                             break;
                         }
@@ -81,7 +83,7 @@ public class Main {
                         if (mq.isCorrectAnswer("C")) {
                             us.addMark(1);
                             System.out.println("Correct Answer");
-                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore());
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount);
                             System.out.println("(A) Next Question");
                             System.out.println("(B) Exit Current Round");
                             answer = sc.nextLine();
@@ -92,7 +94,7 @@ public class Main {
                             }
                         } else {
                             System.out.println("Incorrect Answer");
-                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore());
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount);
                             System.out.println("Exit Current Round");
                             break;
                         }
@@ -101,7 +103,7 @@ public class Main {
                         if (mq.isCorrectAnswer("D")) {
                             us.addMark(1);
                             System.out.println("Correct Answer");
-                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore());
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount);
                             System.out.println("(A) Next Question");
                             System.out.println("(B) Exit Current Round");
                             answer = sc.nextLine();
@@ -112,22 +114,81 @@ public class Main {
                             }
                         } else {
                             System.out.println("Incorrect Answer");
-                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore());
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount);
                             System.out.println("Exit Current Round");
                             break;
                         }
                         break;
                     }
                 }
-                System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore());
+                System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount);
                 String query2 = "INSERT INTO `score`(`user`, `score`, `topic`) VALUES ('" + us.getUserName() + "','" + us.getUserScore() + "','Football')";
                 DbConnect.pushToDB(query2);
                 break;
+
+
             case "B":
                 System.out.println("User selected movies.");
+                String query3 = "SELECT * FROM `binaryQuiz`";
+                rs = DbConnect.getFromDB(query3);
+                while (rs.next()) {
+                    quiz.add(new BinaryChoiceQuiz(rs.getString("question"), Integer.toString(rs.getInt("correctAnswer"))));
+                }
+                int facedQuizCount1 = 0;
+                for (int i = 0; i < quiz.size(); i++) {
+                    ++facedQuizCount1;
+                    BinaryChoiceQuiz bc = (BinaryChoiceQuiz) quiz.get(i);
+                    System.out.println(bc.getQuestion());
+                    System.out.println("(A) YES");
+                    System.out.println("(B) NO");
+                    answer = sc.nextLine();
+                    if (answer.equals("A")) {
+                        if (bc.isCorrectAnswer("1")) {
+                            us.addMark(1);
+                            System.out.println("Correct Answer");
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount1);
+                            System.out.println("(A) Next Question");
+                            System.out.println("(B) Exit Current Round");
+                            answer = sc.nextLine();
+                            if (answer.equals("A")) {
+                                continue;
+                            } else if (answer.equals("B")) {
+                                break;
+                            }
+                        } else {
+                            System.out.println("Incorrect Answer");
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount1);
+                            System.out.println("Exit Current Round");
+                            break;
+                        }
+                        break;
+                    } else if (answer.equals("B")) {
+                        if (bc.isCorrectAnswer("0")) {
+                            us.addMark(1);
+                            System.out.println("Correct Answer");
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount1);
+                            System.out.println("(A) Next Question");
+                            System.out.println("(B) Exit Current Round");
+                            answer = sc.nextLine();
+                            if (answer.equals("A")) {
+                                continue;
+                            } else if (answer.equals("B")) {
+                                break;
+                            }
+                        } else {
+                            System.out.println("Incorrect Answer");
+                            System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount1);
+                            System.out.println("Exit Current Round");
+                            break;
+                        }
+                    }
+
+                }
+                System.out.println("Mr. " + us.getUserName() + ". Your score is " + us.getUserScore() + "/" + facedQuizCount1);
+                String query4 = "INSERT INTO `score`(`user`, `score`, `topic`) VALUES ('" + us.getUserName() + "','" + us.getUserScore() + "','Movies')";
+                DbConnect.pushToDB(query4);
                 break;
+
         }
-
-
     }
 }

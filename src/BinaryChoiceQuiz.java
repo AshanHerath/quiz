@@ -1,4 +1,4 @@
-public class BinaryChoice implements Quiz{
+public class BinaryChoiceQuiz implements Quiz {
 
     String question;
     String correctAnswer;
@@ -19,6 +19,11 @@ public class BinaryChoice implements Quiz{
         this.correctAnswer = correctAnswer;
     }
 
+    public BinaryChoiceQuiz(String question, String correctAnswer) {
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+    }
+
     @Override
     public void showQuestion() {
 
@@ -29,7 +34,7 @@ public class BinaryChoice implements Quiz{
         if (answer.equals(correctAnswer)) {
             return true;
         } else {
-            return true;
+            return false;
         }
     }
 }
