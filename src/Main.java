@@ -22,7 +22,7 @@ public class Main {
         System.out.print("Answer : ");
         String answer = sc.nextLine();
         switch (answer) {
-            case "a":
+            case "A":
                 System.out.println("User selected football.");
                 String query = "SELECT * FROM `multichoiceQuiz`";
                 rs = DbConnect.getFromDB(query);
@@ -37,15 +37,15 @@ public class Main {
                     System.out.println("(C) "+mq.getAnswerC());
                     System.out.println("(D) "+mq.getAnswerD());
                     answer = sc.nextLine();
-                    if (answer.equals("a")){
+                    if (answer.equals("A")){
                             if(mq.isCorrectAnswer("A")){
                                 System.out.println("Correct Answer");
                                 System.out.println("(A) Next Question");
                                 System.out.println("(B) Exit Current Round");
                                 answer = sc.nextLine();
-                                if(answer.equals("a")){
+                                if(answer.equals("A")){
                                     continue;
-                                } else if(answer.equals("b")){
+                                } else if(answer.equals("B")){
                                     break;
                                 }
                             } else {
@@ -54,15 +54,15 @@ public class Main {
                                 break;
                             }
                             break;
-                    } else if (answer.equals("b")){
+                    } else if (answer.equals("B")){
                         if(mq.isCorrectAnswer("B")){
                             System.out.println("Correct Answer");
                             System.out.println("(A) Next Question");
                             System.out.println("(B) Exit Current Round");
                             answer = sc.nextLine();
-                            if(answer.equals("a")){
+                            if(answer.equals("A")){
                                 continue;
-                            } else if(answer.equals("b")){
+                            } else if(answer.equals("B")){
                                 break;
                             }
                         } else {
@@ -71,15 +71,15 @@ public class Main {
                             break;
                         }
                         break;
-                    } else if (answer.equals("c")){
+                    } else if (answer.equals("C")){
                         if(mq.isCorrectAnswer("C")){
                             System.out.println("Correct Answer");
                             System.out.println("(A) Next Question");
                             System.out.println("(B) Exit Current Round");
                             answer = sc.nextLine();
-                            if(answer.equals("a")){
+                            if(answer.equals("A")){
                                 continue;
-                            } else if(answer.equals("b")){
+                            } else if(answer.equals("B")){
                                 break;
                             }
                         } else {
@@ -88,15 +88,15 @@ public class Main {
                             break;
                         }
                         break;
-                    } else if (answer.equals("d")){
+                    } else if (answer.equals("D")){
                         if(mq.isCorrectAnswer("D")){
                             System.out.println("Correct Answer");
                             System.out.println("(A) Next Question");
                             System.out.println("(B) Exit Current Round");
                             answer = sc.nextLine();
-                            if(answer.equals("a")){
+                            if(answer.equals("A")){
                                 continue;
-                            } else if(answer.equals("b")){
+                            } else if(answer.equals("B")){
                                 break;
                             }
                         } else {
@@ -108,7 +108,7 @@ public class Main {
                     }
                 }
                 break;
-            case "b":
+            case "B":
                 System.out.println("User selected movies.");
                 break;
         }
