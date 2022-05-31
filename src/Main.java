@@ -36,17 +36,17 @@ public class Main {
                         System.out.println("Enter Username");
                         answer = sc.nextLine();
 
-                        String query6 = "SELECT id, user, score, topic FROM score WHERE user='"+answer+"';";
+                        String query6 = "SELECT id, user, score, topic FROM score WHERE user='" + answer + "';";
                         rs = DbConnect.getFromDB(query6);
                         System.out.println("Name || Marks");
-                        if(!rs.next())
+                        if (!rs.next())
                             System.out.println("No results found");
                         while (rs.next()) {
                             System.out.println(rs.getString("user") + " || " + rs.getInt("score"));
                         }
                         break;
                 }
-
+                break;
 
             case "B":
                 System.out.print("Sign Up New User : ");
